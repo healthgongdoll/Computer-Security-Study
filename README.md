@@ -1,5 +1,7 @@
 # Computer-Security-Study
 
+All about Computer Security Concepts + Logics 
+
 ## Index
 ##### 1. Basic Computer Security 
 ##### 2. Steganography 
