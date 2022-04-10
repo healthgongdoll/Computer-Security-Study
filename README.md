@@ -338,3 +338,123 @@ Examples:
 ### Pharming 
 
 pharming redirects user to false website without them even knowing it - typed in or clicked on URL looks OK 
+
+
+## Steganography 
+
+### Information Encryption vs Information Hiding 
+
+#### Information Encryption
+
+- The presence of information is 'obvious', but the content is **'scrambled'** using a crypto-key, so it becomes meaningless 
+- No matter how 'unbreakable', encrypted message will arose suspicion
+
+#### Information Hiding 
+- The goal is not just to prevent others from accessing hidden information but **to make others unware of the very existence of the hidden information**
+
+
+### Information Protection
+
+![image](https://user-images.githubusercontent.com/79100627/162640260-ea75f32d-c192-4c2b-aeb3-1ed3e47465f5.png)
+
+### Techniques of Information Hiding 
+
+**Steganography**
+
+- **Steganography **
+  - Greek word for "concealed writing" 
+  - Art and science of hiding information in some cover media for the purpose of protecting **information confidentiality**
+  - **digital steganography - cover media**: image, text, audio, video 
+
+- **Watermarking** 
+  - Also aims to make information invisible, but for the purpose of protection of intellectual property 
+
+- **Fingerprinting**
+  - embedding user-unique marking to different copies of content for the purpose of tracking of intellectual property 
+
+
+### Digital Steganography
+
+Process of hiding information in digital multimedia files and in network packets 
+
+Elements of digital steganography system include 
+- Cover Media (C) that will hold the hidden data 
+- Secret Message (M) - May be in plaintext or any other type of data 
+- Stego function (Fe) and its inverse (Fe^-1)
+- An Optional Stego-Key(K) or Password to hide and unhide the message 
+- Stego Object (S) = Cover media + Secret Message 
+
+![image](https://user-images.githubusercontent.com/79100627/162640782-434dc24d-e292-40c7-99e9-04ca3164b6a9.png)
+
+
+### What Makes Steganography Work?
+
+Digital Steganography takes advantage of 
+- **Space Redundancy** in cover media 
+   - Information can be hidden in unused areas of the file / text
+- **Data Redundancy** in cover media in combination with inherent weakness of human perception 
+   - Information can be embedded in the **Least Significant Bits (LSBs)** of an image 
+   - Information can be embedded in high frequencies of audio spectrum
+
+### Image Steganography
+
+Bits in a pixel (Relative importance of different pixels is different)
+- LSB - Least Significant Bit (Last Bit) 
+- MSB - Most Significant Bit (1st Bit) 
+
+LSB carries the least information - it changes most rapidly 
+
+MSB carries the most information - it changes least rapidly 
+
+### Why we use LSB
+
+easiest and surprising effective way of hiding informaton in an image
+
+LSB of each pixel is/are used to hide the **most significant bits of another image**
+
+Algorithm:
+- Load up host image and image to hide 
+- Choose the number of bits you wish to hide the secret image in
+    - more bit is used => **better quality of hidden image** / BUT **more distortion in cover image**
+- To get original image back, pick out the LSBs According to the number used in Previous steps 
+
+
+### Image with LSB
+
+**Encoding**
+- Host Pixel: **1011**0001
+- Secret Pixel: **0011**1111
+- New Image Pixel: **10110011**
+
+**Decoding** 
+- Host Pixel: 1011**0011**
+- Bits used: 4
+- New image: **00110000**
+
+**Fewer LSB bits** used -> **Hiding capacity low / Better Stego-Image / Worse Recovered Image**
+
+**More LSB bits** used -> **Hiding capacity high / Worse Stego Image / Better recovered Image**
+
+### Pattern of LSB Embedding 
+
+Secret bits can be embedded in LSBs of cover image in two ways </br>
+
+**- Sequentially **
+  - Simple embedding & extraction of secret bits 
+  - Statistics of cover image abruptly changed - easy to detect 
+
+**- Randomly **
+  - The key to generate pseudorandom number must be sent 
+  - Secret bits scattered throughout cover image 
+
+### Water Marking vs Steganography
+
+![image](https://user-images.githubusercontent.com/79100627/162642049-0cd0a498-02fb-4609-9111-cfa9ced2078d.png)
+
+
+
+
+
+
+
+
