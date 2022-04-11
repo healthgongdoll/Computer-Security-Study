@@ -652,8 +652,31 @@ NIST issued call for a 3DES replacement in 1997 with requirements:
   - Key lengths 128, 192, or 256 
 ![image](https://user-images.githubusercontent.com/79100627/162646659-d02a3a16-1b00-492b-967c-4e593263805f.png)
 
+### Asymmetric Ciphers 
 
+Public Key Encryption - Invovles the use of Two Separate but related keys: **Public and Private Key** 
 
+- Public key is made public for others to use, private key is known only to its owner 
+- Either key can encrypt a message - the other key must be used for decryption 
+
+Asymmetric Encryption
+
+**Protection Confidentiality: Alice receives message **
+- Each user genrates a pair of keys 
+- Each user places one of the keys in a public register - this becomes the **public key**; the other is **private key**
+- If Bob wishes to send a **private message** to ALice, he uses Alice's public key 
+- To decrypt Bob's message ALice uses her **private key** 
+
+**Protection of Messages & Sender Integrity** 
+- Alice sends a message to Bob - Bob is able to verify that Alice sent the message & data was not changed 
+
+### Symmetric vs. Asymmetric Encryption - Common Misconceptions 
+
+- Public-key encryption is a general purpose technique that has made symmetric encryption obsolete 
+   - public-key encryption is versatile but very slow - symmetric encryption is still needed for encryption of large messages!
+   - Public key encryption is used for authentication digital signatures, and exchanges of secret keys! 
+
+- Exchange of asymmetric / public keys is much simpler than exchange of symmetric/secret keys 
 
 
 
