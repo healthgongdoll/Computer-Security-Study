@@ -853,7 +853,7 @@ given a hash function h and y=h(M), it must be extremely difficult for Eve to fi
 
 ![image](https://user-images.githubusercontent.com/79100627/162808208-010d043b-b9db-4cfb-8709-c177dc007ff6.png)
 
-# Second Preimage Resistance or Weak Collision Resistance 
+### Second Preimage Resistance or Weak Collision Resistance 
 
 - given M and its hash h(M) it should be extremely difficult for Eve to find any message M' such that h(M) = h(M') 
 
@@ -862,5 +862,154 @@ given a hash function h and y=h(M), it must be extremely difficult for Eve to fi
 ![image](https://user-images.githubusercontent.com/79100627/162808395-5fb9b440-96b1-47b1-a5ce-54c6c28eb96d.png)
 
 
+## Password Cracking
 
 
+### Passwrod 
+
+A secret word/string of characters used to authenticate a user into a system 
+
+- critical (often only) defense agaisnt intruders 
+- Ideal password: easy to reember, hard to 'crack' 
+
+### Password Cracking 
+
+A method of gaining unauthroized access to a computer system by trying different passwords 
+  - Cracking difficulty ~ size of password space 
+
+### Brute Force Password Cracking (Exhaustive Password Search) 
+
+Entire password space is tried 
+
+- starts by using simple combinations of characters 
+
+a) on 26 letter Alphabet, password of length 1/2/n: 
+
+```
+S-1 Letter = 26 
+S-2 Letter = 26 * 26 
+S-n Letter = 26 * 26 * ... 26 = 26^n
+```
+
+b) on A character Alphabet password of length n = A^n
+
+C) on A character alphabet, passwords up to n characters 
+
+![image](https://user-images.githubusercontent.com/79100627/162809614-f995242c-1cf2-4183-adff-e0e472522967.png)
+
+### Example: Brute Force Password Search Space 
+
+System A allows passwords to be any length (1-16) </br>
+System B requires passwords to be at least 8 Characters long ( 8-16) </br>
+
+A= 94
+
+System A: S1-16 = Comb(i=1-16) A^i = A^(16+1) -1 / A-1 = 3.75 * 10^31 
+
+System B: S8-16 = Comb(i=1-16) A^i - Comb(7-i=1) Ai = 3.75 * 10^31
+
+### Example 2: Brute Force Password Search Space 
+
+A system allows passwords consisting of 4 lower-case letters followed by 3 digit numbers 
+
+LLLLDDD -> 26^4 * 10^3 
+
+### Example 3: Brute Force Password Search Space 
+
+If no letter is repeated and password is not case snesitive?
+
+LLL -> A (B-Z) (C-Z)
+
+26 * 25 * 24 
+
+### Biased Attack 
+
+- The search space is further reduced by focusing on most likely combinations of words and / or numbers 
+
+Example: Biased Attack on 4-Digit pins 
+
+Aussme a system requires that access passwords be comprised of 4 digits 
+
+Total unbiased search space: any number between 0-9999 (10,000) serach space: 
+
+### Dictionary Attack 
+
+- Users often create password using common dictionary words 
+- instead of tyring every password, dictionary attack probes only common dictionary words 
+- **Faster than brute force**, as it uses smaller (more likely) search space
+- Still might take considerable time, and might fail in the end 
+
+### Pre- Computed Dictionary Attacks
+
+Achieves Time-Space trade off by pre-computing list of hashes of dictionary words 
+
+- Pre-computed hashes are compared against those in a stolen password file 
+- Rainbow tables 
+  - pregenerated sets/lists of hashes - n*Gbyte size 
+  - allow extremelly rapid searching 
+
+### Rainbow Table 
+
+Is a precomputed table for reversing cryptographic hash functions 
+
+Space time tradeoff 
+- It uses less computer processing time and more storate compared to brute force.
+- It uses more processing time and less storage than a simple lookup table 
+
+**Rainbow Table Construction**
+
+Main idea: define a reudction function R that maps hash values back into values in P
+  - Reduction function is not meant to be "an inverse of the hash function"
+
+![image](https://user-images.githubusercontent.com/79100627/162812981-bed5094a-605d-463b-a7c6-474ea7708102.png)
+
+**Using Rainbow Table**
+
+You got hold of hash "re3xes" and you would like to find 
+
+- Apply reduction function R and check the result with tail column of rainbow 
+- No match? apply hash function H and reduction function R and check again 
+- Stop once you have found a match OR your have constructed a chain with length L with no match 
+
+![image](https://user-images.githubusercontent.com/79100627/162814931-d86d22c8-88fb-4c16-8cfa-fec465a6bc58.png)
+
+
+### Password Salting 
+
+Adding unique random value to each password before hashing
+
+- both the hash and salt are stored 
+- does not fully prevent against password cracking but makes it harder / more time consuming 
+
+![image](https://user-images.githubusercontent.com/79100627/162815104-5a19a84f-eac7-4138-a433-fd97ea246289.png)
+
+### Password Salting Benefits 
+
+- Dictionary and Rainbow attacks impossible to perform 
+- Prevents duplicate passwords from being visible in password file 
+- becomes impossible to find out whether a person has used the same password on multiple systems 
+
+### LM Password Hashing (Not really a hash but a cryptographic value 
+
+- user password is converted to **all uppercase**
+- password has null characters added to it until it equals 14 characters 
+- new password split into two 7 characters (half)
+- Two 7 bytes halves are used to create two 64 bit (8 byte) long DES encryption kyes, by inserting a null bit after every seven bits
+- each key is used to DES - encrypt the constant ASCII string "KGS!@#$%" , resulting in two 16-byte long ciphertext values 
+- finally two 16 byte hashes are concatenated to form the 32 byte long hash 
+
+### LM Drawbacks 
+
+- Case Insensitive - significantly reduces character set that attacker must use (A - from 96 down to 69) 
+- 14- character long passwords split into two 7 character long halves - search space is reduced 
+- DES encryption is not considered safe anymore 
+
+### NTLM Hashing 
+
+- Applies MD4 hash algorithm 3 times 
+- Advantages 
+  - allows for distinction between upper and lower case 
+  - does not split password into smaller easier to crack, chunks 
+- Disadvantages: does not use salting 
+  - salt - random combination of 0 & 1 added to a password 
+  - every bit of salt => 2X password - cracking demands on storage and/ or computation 
