@@ -451,7 +451,206 @@ Secret bits can be embedded in LSBs of cover image in two ways </br>
 
 ![image](https://user-images.githubusercontent.com/79100627/162642049-0cd0a498-02fb-4609-9111-cfa9ced2078d.png)
 
+## Cryptography
 
+### Process of Breaking a Cipher 
+ 
+ - In modern cryptography encryption/decryption algorithm is not a secret 
+ - Hacker probes various keys on the captured ciphertext 
+
+### Factors that Influence Sucess of Crypto-Attack 
+
+  - Time to perform one decryption - **t-one decryption**
+  - Number of keys to try - **n-keys**
+
+Crypto-attack speed = **n-keys x t-one decryption**
+
+### Type of Attacks 
+
+![image](https://user-images.githubusercontent.com/79100627/162643856-47c1a942-be93-46aa-9aa1-b1589f6cfe06.png)
+
+
+### Subsitution Cipher 
+
+Subsitution Cipher in which each letter in the plaintext is replaced by a letter some fixed number of positions down the alphabet 
+
+### Classical Ciphers 
+
+**Cesar Cipher **
+
+Ti - ith character of the plain text </br>
+Ci - ith character of the cipher text </br>
+i = 0,1,2,..., m </br>
+m - length of the alphabet </br> 
+k - shift </br>
+
+Encryption: Ci = (Ti + k) mod m </br>
+Decryption: Ti = (Ci - k) mod m </br>
+</br>
+**Polyalphabetic / Vigenere Cipher** </br>
+</br>
+**Complex subsitution** instead of shifting each character by the same number, characters located at different positions are shifted by different numbers 
+
+### How to break a simple subsitution cipher 
+
+- Frequnecy Analysis (The distribution of letters in a typical sample of English language text)
+- Brute Force (Alphabet consist of 26 letters so mod 26)
+
+### Vigenere Cipher 
+
+**Plaintext:** HOW ARE YOU </br>
+**Key:** ABC ABC ABC </br>
+**Cipher text:** HPY ASG YPW </br>
+
+Vigenere Cipher as an Algorithm </br>
+
+Ti - ith character of the plain text </br>
+Ci - ith character of the cipher text </br>
+Ki - ith character of the key phrase  </br>
+i = 0,1,2,...,m  </br>
+m - length of the alphabet </br>
+</br>
+**Encryption:** Ci = (Ti + Ki) mod m </br>
+**Decryption:** Ti = (Ci - Ki) mod m </br>
+
+### Vigenere Cipher Example
+
+Open text: ATTACK AT DAWN </br>
+Key Phrase: CAT </br>
+Length of Alphabet </br>
+
+![image](https://user-images.githubusercontent.com/79100627/162644446-19fa1721-fd50-46d0-8345-a85d9f7369e4.png)
+
+### Why Polyalphabetic / Vigenere Cipher 
+
+Why is it so strong 
+
+![image](https://user-images.githubusercontent.com/79100627/162644494-23aea2e8-713f-416c-8b9b-c480fb5ca34e.png)
+
+The frequency of english graph is more uniformed and it is hard to guess how much key letter shifted. 
+
+### Modern Cryptography 
+
+**Symmetric-Key Algorithms:** The key used for encryption and decryption is identical and represent a shared secret 
+
+**Aysmmetric-Key Algorithms:** Also known public-key algorithms, is any cryptographic system that uses pairs keys that public may know about one of them 
+
+
+### Confusion vs Diffusion 
+
+**Confusion:** Obscure relationship of the ciphertext and key: a ciphertext bit should depend on several parts of the key 
+  - Subsitution tables 
+ 
+**Diffusion:** Obscure relationship of plaintext and cipher text: each plaintext bit should be affect many cipher text bits 
+  - Permutation 
+
+![image](https://user-images.githubusercontent.com/79100627/162644730-8cfa8915-f4fe-492a-96c2-c5f328906ff5.png)
+
+### Symmetric Ciphers 
+
+Private-key encryption - uses the same secret/private key encrypt & decrypt information 
+
+- Symmetric key = shared secret - must only be known to the communicating parties 
+
+- To ensure full confidentiality in a group of N users, each pair of users must share a unique key 
+
+Shared Secret: </br>
+**(N*N(-1))/2**
+
+(100*(99))/2 = 4950 keys 
+
+### Symmetric Key Distribution
+
+In system deploying symmetric encryption both the number and **distribution of keys is a problem**.
+
+Solution: **Key Distribution Center (KDC)** - trusted 3rd party/server 
+
+Each entity shares a secret key with KDC - **n keys** in total 
+
+KDC hands out keys to paris of different entities, on demand, to enable confidential communication between them. 
+
+![image](https://user-images.githubusercontent.com/79100627/162645049-519e344d-ea56-4e4b-8fc3-06238253f895.png)
+
+### Symmetric Key Distribution Protocol 
+
+![image](https://user-images.githubusercontent.com/79100627/162645081-34a0f548-4cd3-4340-8c6a-85e1295f41de.png)
+
+- Alice wants to send a message to Bob
+- KDC encrypts the Alice, Bob, Session Key with Bob's Key and adds the session key again and encrypts with KA 
+- KDC sends the encrypted message back to Alice, Alices decrypts the message with her key and gets the session key and send to bob 
+- Bob decrypts the message and gets the session key and know that it's from the Alice 
+
+
+### Symmetric Ciphers 
+
+Categories of Symmetric Encryption:
+
+- **Stream Cipher**: encrypt digits (bytes) of a message one at a time 
+    - Advantage: **Speed of transformation** - each symbol is encrypted as soon as it is read 
+    - Disadvantage: **Low diffusion** - All information of a Plaintext symbol is contained in single ciphertext symbol 
+    - Disadvantage: **Sensitivity to tampering** - An interceptor can splice together pieces of previous messages and transmit a new message that looks authentic 
+
+
+### One Time Pad 
+
+Stream Cipher- One Time Pad </br>
+Improvement: Pseudo-Randomized Key </br>
+
+![image](https://user-images.githubusercontent.com/79100627/162645390-a86353fd-4cd0-4574-a206-a00e0a549b8c.png)
+
+
+### Block Cipher 
+
+Data is divided into fixed length blocks </br>
+</br>
+
+Block Cipher - data is divided into fixed length blocks 
+- All block bits are then acted upon to produce an output
+- Advantage: **High Diffusion** - information from one plaintext symbol is diffused into several ciphertext symbols
+- Disadvantage: **Slowness of Encryption** - an entire block must be accumulated before encryption / decryption can begin => slows down real-time app.
+- DES, 3DES, AES
+
+### DES - Data Encryption Standard 
+
+- One of the first widely used symmetric-key block ciphers 
+- Initially proposed by IBM (1974) latter modified and adopted by US National Bureau of Standards (1977) as an official Federal Information Processing Standard (FIPS)
+- Takes a 64 bit block of plaintext and a 56-bit key to produce to a ciphertext block of 64 bits 
+- In 1999, Electronic Frontier Foundation managed to break DES in 22 hours and 15 min 
+
+### Triple DES (3DES) 
+
+Symmetric-key block cipher which applies **DES 3 times** to each data block = Encrypt + Decrypt + Encrypt 
+
+Ciphertext = Ek3(Dk2(Ek1(P))))
+
+Triple DES Keying Options 
+
+- Option 1: all three keys are independent 
+  - Total Key Size = 168 bits 
+  - Effective Security = 112 bits 
+  - Strongest 
+
+- Option 2: K1 and K2 are independent, K3 = K1
+  - Total Key Size = 112 bits 
+  - Effective Security = 80 bits 
+  - moderately Secure 
+
+- Option 3: All three keys are the same 
+  - Weak No difference doing normal DES 
+
+### Triple DES Pros and Cons 
+
+- 3 DES, **Key option 1** is considered to be safe until 2030 
+- DES was designed for efficient hardware implementation- **software implementation is very slow**, 3DES even slower 
+- DES and 3 DES use 64-bit block size - to improve efficiency and security larger block sizes would be perferable 
+
+### AES - (Advanced Encryption Standard) 
+
+NIST issued call for a 3DES replacement in 1997 with requirements:
+  - Sysmmetric Block Cipher 
+  - Block size 128 
+  - Key lengths 128, 192, or 256 
+![image](https://user-images.githubusercontent.com/79100627/162646659-d02a3a16-1b00-492b-967c-4e593263805f.png)
 
 
 
