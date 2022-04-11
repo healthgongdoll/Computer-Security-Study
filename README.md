@@ -673,10 +673,194 @@ Asymmetric Encryption
 ### Symmetric vs. Asymmetric Encryption - Common Misconceptions 
 
 - Public-key encryption is a general purpose technique that has made symmetric encryption obsolete 
-   - public-key encryption is versatile but very slow - symmetric encryption is still needed for encryption of large messages!
-   - Public key encryption is used for authentication digital signatures, and exchanges of secret keys! 
+   - public-key encryption is **versatile but very slow** - symmetric encryption is still needed for encryption of large messages!
+   - Public key encryption is **used for authentication digital signatures, and exchanges of secret keys!** 
 
 - Exchange of asymmetric / public keys is much simpler than exchange of symmetric/secret keys 
+  - Both schemes require a well established system and protocols 
+
+### Diffie-Hellman 
+
+![image](https://user-images.githubusercontent.com/79100627/162795377-7e93ce68-a795-4f42-9084-eab6590ed980.png)
+
+### Diffie-Hellman The Basic Math 
+
+- Before establishing a symmetric key, two parties choose **two integer numbers**
+  - **p**: large prime number with **1024 bits** (300 decimal digits)
+  - **g**: base or generator (primitive root of p) often **2,3,7**
+- Alice choose a large random number x (0<= x <= p-1)
+  - R1 = g^x mod p (Alice public key)
+- Bob chooses a another large random number y ( 0 <= y <= p-1)
+  - R2 = g^y mod p (Bob public key) 
+- Alice sends Bob R1, Bob sends Alice R2
+- Alice calculate K = (R2)^x mod p 
+- Bob calculate K = (R1)^y mod p 
+
+**K =g^xy mod p**
+
+### Breaking Diffie-Hellman 
+
+Consider Diffie Hellman Scheme with a common prime p = 11 and a primitive generator g=2 
+
+If Alice has a public key KA+ = 9 what is Alice's private key KA- = X 
+```
+KA+ = 9 = g^x mod p = 2^x mod 11 
+
+2^x = k * 11 + 9 where k = 1,2,3,...
+
+= 20, for k =1 
+= 31, for k =2
+= 42, for k =3
+= 53, for k =4
+= 64, for k =5 
+
+x = 6
+```
+
+### RSA 
+
+- Based on practical difficulty of factoring the product of two large prime numbers 
+- Diffie Hellman is used to generate a secret key **KEY AGREEMENT**
+- RSA is used to exchange a secret key **KEY TRANSPORT**
+
+### RSA Math
+
+- Choose two random large prime numbers p and q 
+  - The larger the numbers, the more difficult it is to break RSA, but longer it also takes to perform encoding and decoding 
+  - RSA Laboratories recommends that the product of p and q be 1024 bits long 
+- Compute **n =** **p*q** and **z = (p-1)*(q-1)**
+- Choose a number **e < n** with no common factors with z other than 1 (e - used in encryption, public key) 
+- Find a number d such that ed^-1 is exactly divisible by z. That is choose d such that ed mod z =1 
+
+A Encrypts: C = P^e mod n 
+B Decrypts: P = C^d mod n = (P^e mod n)^d mod n
+
+### RSA Proof 
+
+P = (P^e mod n)^d mod n 
+
+1. Modulo rules allow 
+  
+  = (P^ed mod n) mod n = P^ed mod n
+
+2. Theory of large prime numbers allows: 
+
+  = (P^ed mod n) = P 
+  
+### RSA Important properties 
+
+- Given (e,n) = Kpublic it is/should be impossible to comptue (d,n) = Kprivate 
+- The public and private keys are 'commutative' 
+
+![image](https://user-images.githubusercontent.com/79100627/162802776-c10a9d37-5797-4a35-8b2c-0820e6b5785c.png)
+
+### RSA Applications 
+
+- Digital Envelopes: fast exchange of confidential messages (secret message & secreet key sent at once) 
+- Digital signature = message integrity + message authentication
+
+### Digital Envelope - Use of Asymmetric Encryption for Fast Exchange of confidential messages 
+
+- Generate random symmetric key Ksymmetric 
+- Encrypt message using Ksymmetric - Digital letter 
+- ENcrypt K symmetric using receiver's public key K+ - protective digital envelope 
+- Send together 
+
+![image](https://user-images.githubusercontent.com/79100627/162803454-fc407691-4d82-49bd-820e-255c7c732d7d.png)
+
+### Digital Signature - Use of Asymmetric Encryption to protect message integrity + message authenticity  
+
+![image](https://user-images.githubusercontent.com/79100627/162803688-5f30702a-3d14-49d4-9a87-aac3abf12ea0.png)
+
+
+### Public Key / Digital Certificates 
+
+- Rellable Public-Key Distribution: must invovle a truste thrid party 
+   - Certificate Authority - A trusted government agency or a for-profit institution that issues Digital Certificates 
+   - Digital Certificate - digital document that binds a public key to an identity (Person or organization and contains:
+  ![image](https://user-images.githubusercontent.com/79100627/162804124-edf20cf9-a8af-400a-bf4e-4071752e1dce.png)
+
+### Public-Key / Digital Certificates 
+
+- Creation of public-key certificate: creation and use 
+
+![image](https://user-images.githubusercontent.com/79100627/162804281-718711de-97fd-4102-8d0c-6c2af621c067.png)
+
+### Creation & Verification of digital certificate 
+
+![image](https://user-images.githubusercontent.com/79100627/162804396-469595a0-51f5-402f-b1a7-fbd1ccd99483.png)
+
+### Encoding vs. Encryption vs. Hashing 
+
+**Message Encoding**: trnasforms data to another format so that it can be properly /safely consumed by a different type of system 
+
+- does not aim to keep information secret 
+- does not require a key 
+- encoding scheme is publicly available and relatively simple/fast to perform 
+
+**Message Encryption**: transforms data to another format that cannot be easily consumed by anybody but the intended recipients 
+
+- aims to keep information secret 
+- requires a key 
+- encryption scheme is publicly available but quite complex to perform / break 
+
+**Message Hashing**: used to validate the integrity of a given content by producing a fixed-length string with following attributes 
+
+- does not require a key 
+- hashing algorithms are publically avialble 
+- The same input will always produce the same output 
+- any modification to the input should result in drastic change to that output 
+
+### Hashing 
+
+Message Integrity - accomploshed through the use of cryptographic hash functions 
+
+- hash function creates a small fixed size digital 'summary' of the message that can be used as a message fingerprint, aka hash or message digest 
+
+Typical hash size: 128,160,256,512 bits 
+
+Popular Standards: 
+- Message Digest 5 (MD5) No longer secure 
+- Secure Hashing Algorithm 512 (SHA-512) 
+
+![image](https://user-images.githubusercontent.com/79100627/162805479-0831e48d-3fca-4bf1-963a-2342b56f5bea.png)
+
+### Hash Function Criteria 
+
+To be eligible for a hash a function needs to meet 6 important criteria:
+
+- Hash function h can be applied to block of data of any size
+- Hash function h produces a fixed-length output.
+- h(M) is relatively easy to compute for any given M, making both hardware and software implementation practical 
+- **Collision Resistance** 
+- **Preimage Resistance**
+- **Second Preimage Resistance**
+
+### Collision Resistance or Strong Collision Resistance 
+
+must be extremely difficult to find any two M and M' such that h(M) = h(M') 
+
+if strong collision is possible => digital signatures become meaning less 
+![image](https://user-images.githubusercontent.com/79100627/162807879-cc3e7c7e-f575-470e-804c-9c36046b4a1b.png)
+
+### Preimage Resistance or One Wayness
+
+given a hash function h and y=h(M), it must be extremely difficult for Eve to find any message M' such that y=h(M')
+
+- We should not be able to work 'backwards' and (re)create the original message from a given hash 
+
+![image](https://user-images.githubusercontent.com/79100627/162808109-817a612a-6d82-4494-ad08-31c301744ecf.png)
+
+![image](https://user-images.githubusercontent.com/79100627/162808208-010d043b-b9db-4cfb-8709-c177dc007ff6.png)
+
+# Second Preimage Resistance or Weak Collision Resistance 
+
+- given M and its hash h(M) it should be extremely difficult for Eve to find any message M' such that h(M) = h(M') 
+
+- property intended to prevent an adversary from appending a falsified message to a given hash 
+
+![image](https://user-images.githubusercontent.com/79100627/162808395-5fb9b440-96b1-47b1-a5ce-54c6c28eb96d.png)
+
 
 
 
