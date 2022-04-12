@@ -1013,3 +1013,72 @@ Adding unique random value to each password before hashing
 - Disadvantages: does not use salting 
   - salt - random combination of 0 & 1 added to a password 
   - every bit of salt => 2X password - cracking demands on storage and/ or computation 
+
+## Management of Infomation Security 
+
+### Goal of Info. Sec vs. Goals of IT
+
+Not always in complete alignment; sometimes in conflict 
+
+IT Professionals focus on: 
+  - Cost of system creation & Operation
+  - Timelines of System creation
+  - Ease of system use for end user 
+  - Quality of system performance (Speed, Delay,...) 
+
+Info. Sec. Professionals focus on:
+  - Protection of organization's information systems at all cost necessary 
+
+### Info. Sec. within an organization - Option 1: Most Common 
+![image](https://user-images.githubusercontent.com/79100627/162851034-df74353e-b8ad-4b73-9e71-c276e488c4db.png)
+
+Most common organizational structure: in 50% of compnaies </br>
+Info. Sec. Under (reports to & shares budget with) IT department
+- Pros:
+  - To whomever Info. Sec. Manager reports to, understands technological issues 
+  - Security Staff and IT staff collaborate on day-to-day basis 
+  - There is only 'one person' between Info. Sec. Manager and CEO 
+
+- Cons: 
+  - CEO are likely to discriminate against Info. Sec. Function as Other IT objectives (e.g. Computer Performance, ease of use, ...) 
+
+### Info. Sec. Within an orgaization - Option 2: When Security Goes Beyond "Computer Security" 
+
+![image](https://user-images.githubusercontent.com/79100627/162851300-cb0ce3a7-0346-4a00-bcbe-0d8c25042df9.png)
+
+Info. Sec. reports to Administrative Service Dep - performs services for all workers in the organization, much like HR.
+
+- Pros:
+  - Acknowledges that info. and info. systems are found everywhere throughout the organziation - all employees are expected to 'work with' Info. Sec. Department 
+  - Supports efforts to secure information no matter its form (paper, verbal, etc.) rather than viewing info.sec. function as strictly computer-& network-related issues 
+
+- Cons:
+  - Administrative Service VP often does not know much about IT and Info. Sec. - may not be effective in communicating with CEO 
+  - Often subject to cost-cutting measures 
+
+### Info. Sec. Within an organization - Option 3: When Risk to Computer Security => Risk to Business 
+
+![image](https://user-images.githubusercontent.com/79100627/162851623-421f4570-44ec-45a4-945c-88542066eb0e.png)
+
+Info. Sec. reports to Insurance & Risk Management Dept. This approach typically invovles assessing the extent/likelihood of potential losses in case of weakened info. sec. function
+
+- Pros:
+  - brings greater resources and management attention to Info. Sec.
+  - Cheif Risk Manager (CRM) is likely to be prevention oriented and adopt a longer-term viewpoint 
+
+- Cons:
+  - CRM are often not familiar with information system technology 
+  - May over-emphasize strategic issues, and overlook operational and administrative aspects of info. sec. (e.g. change of access privileges when people chage jobs) 
+
+### Info. Sec. in Different Compnaies 
+
+Info Sec within Risk Management (Hospital): should be employed when company's revenues critically depend on CIA of information - if information CIA gets jeopardized, company looses money 
+
+Info Sec within IT (Amazon): should be employed in companies where it is critical to obtain / use latest technology, and bulk of work done by Info. Sec. department is related to that (new) technology
+
+Info Sec within Admin Services (IBM): should be employed in companies that may not worry abotu using the latest technology, but rather about properly securing existing data and whatever technology (info. infrastructure) is currently in place  
+
+### NIST Cybersecurity Framework: 22 Core Functions 
+
+![image](https://user-images.githubusercontent.com/79100627/162852659-b5c5ae27-1eae-4ff8-89c7-b9a075520d11.png)
+
