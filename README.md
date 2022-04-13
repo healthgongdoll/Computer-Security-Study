@@ -1383,4 +1383,150 @@ mechanism of conducting HTTP DDoS by exploiting (hijacking) legitimate/ uninfect
 - very dynamic bot population
 - attacks can not be fully controlled or predicted 
 
+## Risk Management 
+
+### Risk 
+
+likelihood that a chosen action or activity (including the choice of inaction) will lead to a loss (un undesired outcome)
+
+### Risk Management 
+
+Identification, assessment and prioritization of risks followed by coordinated use of resources to monitor, contorl or minimize the impact of risk-related events
+
+### Risk Assessment 
+
+Provides relative numerical risk ratings (scores) to each vulnerability 
+- In risk management, it is not the presence of a vulnerability that really matters, but the associated risk
+
+Risk:
+- Possibility that a threat successfully acts upon a vulnerability and 
+- How severe the consequences would be R = P * V
+
+**Extended Risk Formula v.1.**
+
+R = Pa * Ps * V
+
+- Pa = Probability that an attack/threat (against a vulnerability) takes place 
+- Ps = Probability that the attack successfully exploits the vulnerability 
+
+R = Pa * (1-Pe) * V 
+
+- Pe = Probability that the system's security measures effectively protect against the attack (reflection of system's security effectiveness) 
+
+**Extended Whitman's Risk Formula**
+
+R = Pa * V * [1 - CC + UK]
+
+Pa = probability that certain vulnerability (affecting a particular asset) will / could get exploited 
+v = value of information asset [1,100]
+CC = current control = percentage / fraction of risk already mitigated by current control 
+UK = Uncertainty of knowledge = fraction of risk that is not fully known 
+
+### Risk Determination Example 
+
+![image](https://user-images.githubusercontent.com/79100627/163240643-01667a05-8723-4b38-ac44-2ad337037022.png)
+
+
+Asset A 
+Vulnerability 1 rated as 55 = 50 * (1.0 - 0 + 0.1)
+Vulnerability 2 rated as 35 = 50 * (1- 0.5 + 0.2)
+Vulnerability 3 rated as 12 = 10 * (1- 0 + 0.2) 
+
+
+### Risk Analysis 
+
+**Qualitative Risk **
+- Scenario based approach - uses labels & relative values (high/low) rather than numbers; blends in experience & personal judgement 
+
+**Quantitative Risk **
+- Predicts level of monetary loss for each threat and monetary benefit of controlling the treat 
+- Each element is quantified and entered into equations 
+  - asset value
+  - threat frequency 
+  - severity of vulnerability 
+  - damage impact 
+
+### Qualitative Analysis vs Quantitative Analysis 
+
+![image](https://user-images.githubusercontent.com/79100627/163241761-1c25c5fe-34c9-4b1e-bd0f-4f2563eda789.png)
+
+### Single Loss Expectancy - most likley loss (in value) from an attack 
+
+SLE = AV * EF 
+
+AV: Asset Value 
+
+EF: Exposure Factor 
+
+### Annualized Rate of Occurrence & Annualized Loss Expectancy 
+
+Annaulized Rate of Occurrence (ARO - indicates how often attack is expected to successfully occur in a year) 
+- If an attack occurs once every 2 years => ARO = 0.5 
+
+Annualized Loss Expectancy - Overall loss incurred by an attack 
+- ALE = ARO * SLE
+
+
+### ALE Example 
+
+```
+A widget manufacturer has installed new network servers,
+changing its network from P2P, to client/server-based network.
+The network consists of 200 users who make an average of
+$20 an hour, working on 200 workstations.
+Previously, none of the workstations involved in the network
+had an anti-virus software installed on the machines. This was
+because there was no connection to the Internet and the
+workstations did not have USB/disk drives or Internet
+connectivity, so the risk of viruses was deemed minimal.
+One of the new servers provides a broadband connection to
+the Internet, which employees can now use to send and receive
+email, and surf the Internet.
+
+One of the managers read in a
+trade magazine that other widget
+companies have reported an
+annual 75% chance of virus
+infection after installing T1 lines,
+and it may take up to 3 hours to
+restore the system.
+A vendor will sell licensed copies
+of antivirus for all servers and
+the 200 workstations at a cost
+of $4,700 per year.
+
+The company has asked you to determine the annual loss that
+can be expected from viruses, and whether it is cost effective
+to purchase licensed copies of anti-virus software.
+```
+
+Based on the Provided data 
+
+ARO = 0.75
+
+SLE = 200 Users * 20 hours (user-hour) * 3 hours = $12,000
+
+ALE = SLE* ARO = $ 9,000 
+
+ACS = $4700 
+
+### Cost Benefit Analysis Formula 
+
+NRRB = (ALE(Prior) - ALE(Post)) - ACS 
+
+ALE(Prior) - ALE before implementing control
+
+ALE(Post) - ALE after implementing control
+
+ACS - annual cost of safeguard 
+
+### Example of NRRB 
+
+![image](https://user-images.githubusercontent.com/79100627/163243065-d7d29a1a-d721-4154-8dac-688104e88ddf.png)
+
+
+
+
+
+
 
