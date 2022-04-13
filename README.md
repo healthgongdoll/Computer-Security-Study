@@ -1259,3 +1259,128 @@ Distributed DoS attack - employ numerous attacking machines - so called botnets
 
 ### Botnet for DDoS 
 
+Botnet: A network of compromised machines (bots, zombies, or agents) controlled by the attacker 
+
+Attacker/ Master: machine that is physically used by the bot master / herder
+- Can be anywhere with any type of interent connection 
+
+Stepping Stone: attacker can use 1 or more stepping stones to hide his or her true identity and location 
+- Typically, There is a telnet connection between botnet master and its stepping stones 
+- Due to legal issue and physical location, using stepping stones located in foreign countries make it much more difficult to trace the original attacker 
+
+Handler: A computer that have been compromised by the bot master and loaded with special applications to manage agents 
+- Handler accepts commands from the attackers by way of stepping stones and relay those commands to waiting agents 
+- Each handler is responsible for (only) a group of agents 
+- If handlers communicate with their respective agents via TCP connections, they will get. have a list of agents' IP addresses 
+
+Bot / Zombie / Agent: A compromised 3rd party machine with the injected malware 
+- Real power of the botnet - capable of launching attack and/or propagating itself to other machines 
+- Largest known botnet: Mariposa, 8-12 million bots (2008)
+
+### Bot Net Maps
+
+![image](https://user-images.githubusercontent.com/79100627/163206709-07727eed-1d23-4b33-aa09-ebd93ed47183.png)
+
+### Botnet Propagation 
+
+**Vulnerability Scan**: manual propagation involving systematic scanning / searching for hosts with particular vulnerabilities 
+
+**Worm Exploits**: Automated propagation process via worms that traverse the Internet infecting hosts and installing the agent software 
+
+**Web based malware exploits**: Automated propagation by means of drive by download from compromised web sites
+
+### Botnet: to Build or to Rent?
+
+Building a botnet: "Ready to use" development kits are available on the black market - packages containing C&C software & bot software 
+
+- Dirt Jumper - Sophisticated software with a HTTP C&C server & SQL database for keeping track of infected bots 
+- Requires technical expertise and is time consuming 
+
+### Direct DDoS attacks 
+
+Agents conducting the attack are compromised systems running the attacker's program
+- The source IP addresses in attacking packets are often spoofed 
+- Protocols used: any - ICMP, TCP, UDP, DNS, HTTP
+
+![image](https://user-images.githubusercontent.com/79100627/163210821-223c2320-8cbb-4fe9-819c-b62aa39d213d.png)
+
+### Reflector DDoS attacks 
+
+Indirect attack utilizing innocent uncompromised intermediate nodes and any simple 'request-reply' protocols 
+- The source IP address in attacking packet = spoofed victim's IP 
+- aims to obscure the identity of attacking machines 
+
+![image](https://user-images.githubusercontent.com/79100627/163211112-a46bd816-67a3-4d11-8960-a048a8a95e42.png)
+
+### Amplified & Reflector DDoS (Is HTTP Reflector DDoS Possible?)
+
+HTTP runs on top of an establiashed TCP connection. It is impossible to send an HTTP reqeust to the Victim without a valid 3-way TCP handshake 
+
+HTTP is not a simple 'request-reply' protocol =? reflector attack not possible 
+
+![image](https://user-images.githubusercontent.com/79100627/163211738-2b430057-2403-40dd-a683-6248e4115781.png)
+
+### Amplified & Reflector DDoS (DNS Reflector DDoS - Possible or not?) 
+
+DNS runs on top of UDP (or TCP), and acts as a simple 'request-reply' protocol => reflector attack possible. 
+
+![image](https://user-images.githubusercontent.com/79100627/163212094-2ecfb615-4aed-4864-b9da-0b9026b559a9.png)
+
+
+### Amplified DDoS attack
+
+variant of reflector attack: aim to generate multiple reflector packets for each original packet set 
+- can be achieved by directing original requests to a broadcast address of a large LAN 
+- ICMP ech request to 129.1.0.0 => multiple ech replies 
+- TCP cannot be used as it is 'connection oriented' 
+
+### DDoS Defences 
+
+**Classical DDoS Defences**
+
+Attack prevention - before attack 
+- Up-to-date anti-malware to prevent the creation of botnets 
+- Monitoring of traffic by ISP, or 'cyber-spies', to detect packets between attackers and stepping-stones/ handlers
+
+Attack detection and Filtering - During the Attack 
+- Firewall monitors for suspicious (blacklisted) IPs or suspicious packets (SYN flood) and drops them 
+- ISP minitors and drops packets with spoofed IP addr 
+
+**Modern Lines of DDoS Defence**
+
+Content Delivery Networks (Akamai)
+- Web-site content is placed on multiple / redundant locations
+- Users are 'directed' to geographically closeset servers 
+- multiple server => no 'Single point of failure'
+
+Scrubbing Centers (Prolexic) 
+- Packets destined for an enterprise are routed through , and screened by, a special cloud-based network of routers 
+- If an attack pattern is identified => suspicious packets are dropped before reaching the victim 
+
+### Appliiation Layer DDoS Attacks 
+
+fastest growing category of DDoS attacks 
+- Hard to distinguish between legitimate & malicious HTTP requests 
+
+### How Browser Works 
+
+based on HTML page retrieve first 
+- then HTML page parsed and individual objects are subsequently retrieved 
+
+### Puppetnets 
+
+mechanism of conducting HTTP DDoS by exploiting (hijacking) legitimate/ uninfected machines
+
+![image](https://user-images.githubusercontent.com/79100627/163215519-7523e8e0-4353-408b-b210-47061d5b95d1.png)
+
+### Puppetnets Pros vs Cons 
+
+**Advantages**
+- minimal cost 
+- puppet-bots are generally trusted with good history - harder to detect, and not subject to black listing or firewall blocking 
+
+**Disadvantage **
+- very dynamic bot population
+- attacks can not be fully controlled or predicted 
+
+
