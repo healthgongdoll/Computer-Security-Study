@@ -1082,3 +1082,180 @@ Info Sec within Admin Services (IBM): should be employed in companies that may n
 
 ![image](https://user-images.githubusercontent.com/79100627/162852659-b5c5ae27-1eae-4ff8-89c7-b9a075520d11.png)
 
+## Access Control
+
+### NIST Cybersecurity Framework 
+
+Protect...
+- Access Control: limit access to information resources and associated facilities to authorized users, processes and devices 
+
+
+### Stages of Access Controls 
+
+**Identification** - obtain identity of an entity requesting access to a logical or physical area 
+
+**Authentication** - confirm identity of the entity seeking access ...
+  - Making sure user's credential are not false - the user 'is' who they claim to be 
+
+**Authorization** - determine whether the authenticated entity is permitted to access a particular system (e.g. OS, firewall, router, database, ...) and its resources (e.g., system's files) 
+  - typically implemented by means of access control lists/rules
+
+### Basic Steps in Access Control
+
+![image](https://user-images.githubusercontent.com/79100627/163079931-9aad857d-ca01-4cbe-836d-c2560984c526.png)
+
+### Identification
+
+mechanism that provides info about an unverified entity - aka supplicant - that wants to be granted access to a logical or physical area 
+
+- Must be unique value that can be mapped to one and only one entity within the administered domain 
+- In most organizations, identification = name OR (initial + surname) 
+
+### Authentication 
+
+Process of validating a person's supplicant's purported identity 
+
+Types of authentication mechanisms: 
+- Something you know: Password
+- Something you have: Cryptographic Tokens or smart cards
+- Something you are: fingerprints, palm prints, iris scans,...
+- Something you produce: pattern recognition of voice, signature/handwriting, typing rhythm 
+
+### Types of Tokens 
+
+**Static Tokens**
+
+**Swipe cards** - ID and ATM cards 
+- aka 'dumb cards', transmit same credential every time - the credential (base secret) is impractical to memorize 
+- PIN/password not on the card - ATM encrypts PIN provided by user and sends it to a database for verification...
+
+**Smart card** - Swipe cards with a chip
+- Chip contains a CPU, memory blocks (RAM, ROM,...) and on chip encryption module 
+- Stores 100x data stored on magnetic strip: encrypted PIN & other info about card holder 
+- Card checks user's PIN & generates a certificate to authorize transaction process
+
+### Synchronous (One-Time Password) Tokens 
+
+Small LCD device that generates a unique new password periodically 
+- Token combines 'base secret' with clock to generate new password 
+- Token and authentication server must have their clocks synchronized - which is often a challenge 
+
+![image](https://user-images.githubusercontent.com/79100627/163082253-ed047ae4-8490-4944-9c1e-de130abe6de0.png)
+
+### Synchronous Token example 
+
+![image](https://user-images.githubusercontent.com/79100627/163082598-1d728149-6770-4764-939c-b89990db2ee1.png)
+
+
+### Asynchronous (Challenge-Response) Tokens 
+
+Instead of time, token uses a challenge/nonce provided by the system to generate the password 
+
+- eg. Token can generate the password by 
+- 1. applying a unique hash function to (user's base secret + nonce) 
+- 2. encrypting nonce using user's/token's public key 
+
+![image](https://user-images.githubusercontent.com/79100627/163082950-fd5d726a-add6-4080-b53b-ced53cd32e24.png)
+
+### Asynchronous Token example 
+
+![image](https://user-images.githubusercontent.com/79100627/163083042-dbd06ae4-bdb4-4c99-83b7-b3218560c9ef.png)
+
+### Evaluation of Biometric Systems 
+
+Confusion Matrix 
+- Also known as Error Matrix, is a table visualization of the performance of statistical classification process
+
+![image](https://user-images.githubusercontent.com/79100627/163083441-59bdb47b-b064-43b1-94ba-224ea482ec1c.png)
+
+### Authentication: Something you are ...
+
+Something you are: Evaluation of Biometic Systems 
+
+False Reject Rate (FRR) , aka False Negative 
+- % of authorized users who are denied access
+- false negatives do not represent a threat to security but an annoyance to legitimate users 
+
+False Accept Rate (FAR), aka False Positive 
+- % of unauthorized / fraudulent users who are allowed access to system 
+- Represent serous security breach 
+
+Crossover Error Rate (CER) aka Equal Error Rate 
+- point at which FRR = FAR - Operating Point of choice for most biometric systems - provides balance between sensitivity & performance 
+- techniques with 1% CER superior to 5% CER 
+
+![image](https://user-images.githubusercontent.com/79100627/163084101-3bb6c06c-f4b8-43d6-8c98-85af9b2efd44.png)
+![image](https://user-images.githubusercontent.com/79100627/163084114-25e9d02e-fb32-420e-bbe6-92b329005aed.png)
+
+### Authentication: Something you are 
+
+![image](https://user-images.githubusercontent.com/79100627/163084518-d91d3e09-b122-431e-ae44-23096b3babe8.png)
+
+
+### Single - and multi-factor authentication
+
+System that use one authentication credential (e.g. something you know) are known as one-factor authetnication systems.
+
+Systems that require strong protection typically combine multiple authentication mechanisms - e.g. something you have and something you know. They are known as two factor authetnciation systems
+
+## Denial of Service Attack 
+
+
+### Categories of DDoS Attack 
+
+![image](https://user-images.githubusercontent.com/79100627/163085762-c973846f-040c-4445-92b0-0e3d6df7119c.png)
+
+### DDoS Targeting Bandwidth 
+
+Bandwidth = Capacity of network link connecting a server 
+
+Typically, server bandwidth << ISP bandwidth 
+
+Hence, it is always possible to 'congest' server link => degraded / non existent service for (some) legitimate users 
+
+### DoS Targeting Bandwidth 
+
+Flooding - most common type of bandwidth DDoS 
+
+- Network Layer - ICMP Flood 
+- Transport Layer - UDP, TCP Flood 
+- Application Layer - HTTP Flood
+
+
+### DoS Targeting System Resources 
+
+Aim to consume limited server's OS-level resources typically by misusing lower-layer protocols (TCP, IP, ...) 
+
+- Buffers holding arriving IP packets 
+- Tables of open TCP connections 
+
+### DoS Targeting System Resources Examples
+
+**TCP-SYN Flood**
+- Attacker sends a flood of TCP-SYN request in possibly spoofed IP packets => 3-way handshake never completed 
+- Half open connections bind server resources - no new connections can be made 
+
+![image](https://user-images.githubusercontent.com/79100627/163087196-b59c7049-4403-41ac-990e-813856e2c7d2.png)
+
+
+### DoS Targeting Application Resources
+
+Involve valid-looking application requests that 
+- consume significant application resources, or 
+- cause application to crash 
+
+Example
+- HTTP attack requesting large PDF files from a server 
+- attack on a web server that amkes database queries using computationally-costly requests 
+
+### DoS vs DDoS Attacks 
+
+DoS attack - one attacking machine
+
+Distributed DoS attack - employ numerous attacking machines - so called botnets 
+- direct DDoS attacks 
+- reflector DDoS attacks
+- amplification DDoS attacks 
+
+### Botnet for DDoS 
+
