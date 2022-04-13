@@ -1393,6 +1393,30 @@ likelihood that a chosen action or activity (including the choice of inaction) w
 
 Identification, assessment and prioritization of risks followed by coordinated use of resources to monitor, contorl or minimize the impact of risk-related events
 
+
+### Basic Strategies to Control Risks 
+
+- Avoidance
+  - do not proceed with the activity or system that creates this risk 
+  - Recommended for vulerabilities with very high risk factor that are very costly to fix 
+
+- Reduced Likelihood (Control) 
+  - by implementing suitable controls, lower the chances of the vulnerability being exploited 
+  - Recommended for vulnerabilities with high risk factor that are moderately costly to fix 
+
+- Transference 
+  - Share responsibility for the risk with a thrid party 
+  - Recommended for vulnerabilities with high risk factor that are moderately costly to fix if employing otuside expertise 
+
+- Migitiation
+  - reduce impact should an attack still exploit the vulnerability 
+  - Recommended for vulnerabilities that are low-risk and moderately costly to fix 
+
+- Acceptance 
+  - Understand consequences and acknowledge risks without any attempt to control or mitigate 
+  - Recommended when vulnerability risk < cost of any control 
+
+
 ### Risk Assessment 
 
 Provides relative numerical risk ratings (scores) to each vulnerability 
