@@ -1379,7 +1379,7 @@ mechanism of conducting HTTP DDoS by exploiting (hijacking) legitimate/ uninfect
 - minimal cost 
 - puppet-bots are generally trusted with good history - harder to detect, and not subject to black listing or firewall blocking 
 
-**Disadvantage **
+**Disadvantage**
 - very dynamic bot population
 - attacks can not be fully controlled or predicted 
 
